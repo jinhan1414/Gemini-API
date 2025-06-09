@@ -156,10 +156,10 @@ class GeminiClient:
 
     async def init(
         self,
-        timeout: float = 30,
-        auto_close: bool = False,
+        timeout: float = 180,
+        auto_close: bool = True,
         close_delay: float = 300,
-        auto_refresh: bool = True,
+        auto_refresh: bool = False,
         access_token: str = None,
         refresh_interval: float = 540,
         verbose: bool = True,
