@@ -5,11 +5,14 @@ WORKDIR /app
 # 安装uv
 RUN pip install uv uvicorn
 
-# 复制项目文件
-COPY . /app
+# 复制项目配置文件
+COPY pyproject.toml uv.lock ./
 
 # 安装依赖
 RUN uv sync --frozen --no-dev
+
+# 复制项目文件
+COPY . /app
 
 # 暴露端口
 EXPOSE 8000
