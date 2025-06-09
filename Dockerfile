@@ -9,7 +9,7 @@ RUN pip install uv uvicorn
 COPY . /app
 
 # 安装依赖
-RUN uv pip install --system --no-cache-dir -r /app/uv.lock || true
+RUN uv pip install --system --no-cache-dir -r /data/uv.lock || true
 
 # 暴露端口
 EXPOSE 8000
