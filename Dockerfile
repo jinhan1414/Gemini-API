@@ -8,12 +8,11 @@ COPY pyproject.toml uv.lock ./
 ENV SETUPTOOLS_SCM_PRETEND_VERSION_FOR_GEMINI_WEBAPI=1.0.0
 # 先创建虚拟环境
 RUN uv venv
-# 安装所有依赖
-RUN uv pip install -r uv.lock
+# 从 pyproject.toml 安装依赖
+RUN uv pip install -e .
 # 复制项目文件
 COPY . /app
-# 安装项目本身
-RUN uv pip install -e .
+
 # 暴露端口
 EXPOSE 8000
 # 启动FastAPI服务
