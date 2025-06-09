@@ -4,6 +4,8 @@ WORKDIR /app
 RUN pip install uv uvicorn
 # 复制项目配置文件
 COPY pyproject.toml uv.lock ./
+# 设置版本环境变量（根据您的项目名称调整）
+ENV SETUPTOOLS_SCM_PRETEND_VERSION_FOR_GEMINI_WEBAPI=1.0.0
 # 只安装依赖，不安装项目本身
 RUN uv sync --frozen --no-dev --no-install-project
 # 复制项目文件
