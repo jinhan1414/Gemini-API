@@ -70,20 +70,12 @@ async def chat_completions(request: ChatCompletionRequest):
     last_exc = None
     while tried < total:
         idx = (client_index + tried) % total
-        if not client_status[idx]:
-            tried += 1
-            continue
         try:
             # 根据请求中的 model 字符串获取 Model 枚举
             model_enum = Model.from_name(request.model)
             response = await clients[idx].generate_content(prompt, model=model_enum)
-            client_index = (idx + 1) % total
-            client_fail_count[idx] = 0  # 成功则清零
             break
         except Exception as e:
-            client_fail_count[idx] += 1
-            if client_fail_count[idx] >= 3:
-                client_status[idx] = False
             last_exc = e
             tried += 1
     else:
