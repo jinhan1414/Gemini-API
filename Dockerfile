@@ -16,4 +16,4 @@ RUN uv pip install -e .
 # 暴露端口
 EXPOSE 8000
 # 启动FastAPI服务
-CMD ["uv", "run", "uvicorn", "src.gemini_webapi.openai_api:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD [".venv/bin/python", "-m", "uvicorn", "src.gemini_webapi.openai_api:app", "--host", "0.0.0.0", "--port", "8000"]
