@@ -1,7 +1,7 @@
 FROM swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/python:3.11-slim
 WORKDIR /app
 # 安装uv
-RUN pip install uv uvicorn
+RUN pip install uv
 # 设置版本环境变量（根据您的项目名称调整）
 ENV SETUPTOOLS_SCM_PRETEND_VERSION_FOR_GEMINI_WEBAPI=1.0.0
 ENV PATH="/app/.venv/bin:$PATH"
