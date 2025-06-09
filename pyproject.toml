@@ -37,3 +37,7 @@ include = ["gemini_webapi"]
 [tool.setuptools_scm]
 version_scheme = "post-release"
 local_scheme = "no-local-version"
+
+[tool.poetry.dependencies]
+fastapi = "^0.110.0"
+uvicorn = "^0.27.0"

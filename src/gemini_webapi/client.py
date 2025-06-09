@@ -19,7 +19,7 @@ from .exceptions import (
     ModelInvalid,
     TemporarilyBlocked,
 )
-from .types import WebImage, GeneratedImage, Candidate, ModelOutput
+from .gemini_types import WebImage, GeneratedImage, Candidate, ModelOutput
 from .utils import (
     upload_file,
     parse_file_name,
@@ -160,6 +160,7 @@ class GeminiClient:
         auto_close: bool = False,
         close_delay: float = 300,
         auto_refresh: bool = True,
+        access_token: str = None,
         refresh_interval: float = 540,
         verbose: bool = True,
     ) -> None:
@@ -168,6 +169,7 @@ class GeminiClient:
 
         Parameters
         ----------
+        access_token
         timeout: `float`, optional
             Request timeout of the client in seconds. Used to limit the max waiting time when sending a request.
         auto_close: `bool`, optional
@@ -184,9 +186,12 @@ class GeminiClient:
         """
 
         try:
-            access_token, valid_cookies = await get_access_token(
-                base_cookies=self.cookies, proxy=self.proxy, verbose=verbose
-            )
+            valid_cookies = self.cookies
+            if not access_token:
+                access_token, valid_cookies = await get_access_token(
+                    base_cookies=self.cookies, proxy=self.proxy, verbose=verbose
+                )
+            # access_token ="AJoiUyMHlwgLo3YKiYSOUwvoUlNI:1749445983132"
 
             self.client = AsyncClient(
                 http2=True,
