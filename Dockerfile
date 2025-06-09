@@ -21,4 +21,4 @@ ENV PYTHONPATH=.
 # 暴露端口
 EXPOSE 8000
 # 启动FastAPI服务
-CMD ["uvicorn", "src.gemini_webapi.openai_api:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uv", "run", "uvicorn", "src.gemini_webapi.openai_api:app", "--host", "0.0.0.0", "--port", "8000"]
