@@ -15,10 +15,11 @@ clients = []
 client_status = []  # True=可用，False=故障
 client_fail_count = []  # 记录每个客户端的失败次数
 client_index = 0
+access_tokens = []
 
 @app.on_event("startup")
 async def startup_event():
-    global clients, client_status, client_fail_count
+    global clients, client_status, client_fail_count,access_tokens
     psids = os.getenv("SECURE_1PSID", "").split(",")
     psidts = os.getenv("SECURE_1PSIDTS", "").split(",")
     access_tokens = os.getenv("access_token", "").split(",")
