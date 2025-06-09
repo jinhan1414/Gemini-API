@@ -23,6 +23,8 @@ dependencies = [
     "httpx[http2]~=0.28.1",
     "loguru~=0.7.3",
     "pydantic~=2.11.3",
+    "fastapi~=0.110.0",
+    "uvicorn~=0.27.0",
 ]
 dynamic = ["version"]
 
@@ -38,6 +40,6 @@ include = ["gemini_webapi"]
 version_scheme = "post-release"
 local_scheme = "no-local-version"
 
-[tool.poetry.dependencies]
-fastapi = "^0.110.0"
-uvicorn = "^0.27.0"
+#[tool.poetry.dependencies]
+#fastapi = "^0.110.0"
+#uvicorn = "^0.27.0"
