@@ -9,7 +9,7 @@ RUN pip install uv uvicorn
 COPY . /app
 
 # 安装依赖
-RUN uv sync
+RUN uv sync --frozen --no-dev
 
 # 暴露端口
 EXPOSE 8000
