@@ -3,7 +3,7 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # 安装uv
-RUN pip install uv
+RUN pip install uv uvicorn
 
 # 复制项目文件
 COPY . /app
