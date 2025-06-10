@@ -77,7 +77,7 @@ async def chat_completions(request: ChatCompletionRequest):
             response = await clients[idx].generate_content(prompt, model=model_enum)
             break
         except Exception as e:
-
+            print(f"GeminiClient {idx} 错误: {e}")
             last_exc = e
             tried += 1
     else:
