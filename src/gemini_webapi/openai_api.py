@@ -74,6 +74,8 @@ async def chat_completions(request: ChatCompletionRequest):
         try:
             # 根据请求中的 model 字符串获取 Model 枚举
             model_enum = Model.from_name(request.model)
+            print(f"request.model: {request.model}")
+            print(f"clients idx: {idx}")
             # await clients[idx].init(access_token=access_tokens[idx].strip())
 
             response = await clients[idx].generate_content(prompt, model=model_enum)
