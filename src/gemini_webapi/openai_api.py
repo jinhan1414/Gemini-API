@@ -28,6 +28,7 @@ async def startup_event():
     client_fail_count = []
     for psid, psidts_val,access_token in zip(psids, psidts,access_tokens):
         c = GeminiClient(psid.strip(), psidts_val.strip())
+        await c.init()
         clients.append(c)
         client_status.append(True)
         client_fail_count.append(0)
@@ -73,13 +74,15 @@ async def chat_completions(request: ChatCompletionRequest):
         try:
             # 根据请求中的 model 字符串获取 Model 枚举
             model_enum = Model.from_name(request.model)
-            await clients[idx].init(access_token=access_tokens[idx].strip())
+            # await clients[idx].init(access_token=access_tokens[idx].strip())
+
             response = await clients[idx].generate_content(prompt, model=model_enum)
             break
         except Exception as e:
             print(f"GeminiClient {idx} 错误: {e}")
             last_exc = e
             tried += 1
+            clients[idx].init()
     else:
         raise RuntimeError(f"所有 GeminiClient 实例均不可用: {last_exc}")
     if request.stream:
