@@ -86,7 +86,8 @@ async def chat_completions(request: ChatCompletionRequest):
             tried += 1
             clients[idx].init()
     else:
-        raise RuntimeError(f"所有 GeminiClient 实例均不可用: {last_exc}")
+        print(f"所有 GeminiClient 实例均不可用: {last_exc}")
+        return
     if request.stream:
         async def event_generator():
             data = {
