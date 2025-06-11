@@ -32,7 +32,7 @@ async def rotate_1psidts(cookies: dict, proxy: str | None = None) -> str:
         If request failed with other status codes.
     """
 
-    path = Path(__file__).parent / "temp"
+    path = "/data"
     path.mkdir(parents=True, exist_ok=True)
     filename = f".cached_1psidts_{cookies['__Secure-1PSID']}.txt"
     path = path / filename
