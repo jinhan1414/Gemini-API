@@ -159,7 +159,7 @@ class GeminiClient:
         timeout: float = 180,
         auto_close: bool = True,
         close_delay: float = 300,
-        auto_refresh: bool = False,
+        auto_refresh: bool = True,
         access_token: str = None,
         refresh_interval: float = 540,
         verbose: bool = True,
